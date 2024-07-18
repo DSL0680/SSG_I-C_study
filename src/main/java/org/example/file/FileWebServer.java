@@ -23,12 +23,9 @@ public class FileWebServer {
             ) {
 
 // C:\\zzz\\ 폴더 내의 파일 목록 가져오기
-                File[] files = FileWebService.FileList("C:\\zzz\\");
-
-                if (files == null || files.length == 0) {
-                    System.out.println("No files to send.");
-                    continue;
-                }
+                FileWebService file = FileWebService.INSTANCE;
+                file.addFile(file.file);
+                File[] files = file.files;
 
 // 임의의 파일 선택
                 Random random = new Random();
