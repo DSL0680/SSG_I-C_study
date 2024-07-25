@@ -5,7 +5,7 @@
 ${nums}
 
 <h1>Todo List Page</h1>
-
+// JSTL
 <c:out value="${tag}"/>
 
 <ul>

@@ -61,24 +61,7 @@ public class DBTests {
         log.info(arr[3]);
 
     }
-//        String url = "jdbc:mariadb://49.174.76.109:13306/webdb";
-//        String username = "webdbuser";
-//        String password = "webdbuser";
-//
-//        Class.forName("org.mariadb.jdbc.Driver");
-//
-//        long start = System.currentTimeMillis();
-//
-//        for (int i = 0; i < 100; i++) {
-//
-//            @Cleanup Connection conn = DriverManager.getConnection(url, username, password);
-//
-//            log.info(conn);
-//
-//        }
-//        long end = System.currentTimeMillis();
-//
-//        log.info("Time: " + (end - start));
+
 
 
     @Test
@@ -112,3 +95,24 @@ public class DBTests {
 
     }
 }
+
+
+
+//        String url = "jdbc:mariadb://49.174.76.109:13306/webdb";
+//        String username = "webdbuser";
+//        String password = "webdbuser";
+//
+//        Class.forName("org.mariadb.jdbc.Driver");
+//
+//        long start = System.currentTimeMillis();
+//
+//        for (int i = 0; i < 100; i++) {
+//
+//            @Cleanup Connection conn = DriverManager.getConnection(url, username, password);
+//
+//            log.info(conn);
+//
+//        }
+//        long end = System.currentTimeMillis();
+//
+//        log.info("Time: " + (end - start));

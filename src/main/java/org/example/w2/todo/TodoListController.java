@@ -25,7 +25,7 @@ public class TodoListController extends HttpServlet {
 
        String tag = "<script src = 'http://49.174.76.109:8080/sample.js'></script>";
 
-       // 1부터10까지를 list배열로 해준거다
+       // 1부터10까지를 list배열
         List<Integer> nums =
                 IntStream.rangeClosed(1,10).boxed().collect(Collectors.toList());
 
