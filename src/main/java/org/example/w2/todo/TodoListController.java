@@ -7,6 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 import org.example.w2.bmi.Scores;
+import org.example.w2.common.PageInfo;
+import org.example.w2.common.StringUtil;
+import org.example.w2.todo.dao.TodoDAO;
 
 import javax.security.auth.Subject;
 import java.io.IOException;
@@ -23,17 +26,38 @@ public class TodoListController extends HttpServlet {
 
        log.info("Todo List GET");
 
-       String tag = "<script src = 'http://49.174.76.109:8080/sample.js'></script>";
+       String pageStr = req.getParameter("page");
 
-       // 1부터10까지를 list배열
-        List<Integer> nums =
-                IntStream.rangeClosed(1,10).boxed().collect(Collectors.toList());
+       log.info("pageStr: " + pageStr);
 
-        req.setAttribute("nums", nums);
+       int page = StringUtil.getInt(pageStr, 1);
 
-        req.setAttribute("tag", tag);
+       try {
+           List<TodoVO> todoList = TodoDAO.INSTANCE.list(page);
+           int total = TodoDAO.INSTANCE.getTotal();
 
-       req.getRequestDispatcher("/WEB-INF/todo/list.jsp").forward(req, resp);
+           PageInfo pageInfo = new PageInfo(page,10, total);
+
+           req.setAttribute("list", TodoDAO.INSTANCE.list(pageInfo.getPage()));
+
+           req.setAttribute("pageInfo", pageInfo);
+
+           req.getRequestDispatcher("/WEB-INF/todo/list.jsp").forward(req, resp);
+       }catch (Exception e) {
+           e.printStackTrace();
+       }//end catch
+
 
     }
 }
+
+
+//String tag = "<script src = 'http://49.174.76.109:8080/sample.js'></script>";
+//
+//       // 1부터10까지를 list배열
+//        List<Integer> nums =
+//                IntStream.rangeClosed(1,10).boxed().collect(Collectors.toList());
+//
+//        req.setAttribute("nums", nums);
+//
+//        req.setAttribute("tag", tag);
