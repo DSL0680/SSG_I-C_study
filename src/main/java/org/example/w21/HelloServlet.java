@@ -12,7 +12,7 @@ public class HelloServlet extends HttpServlet {
     public void init() {
         message = "Hello World!";
     }
-
+    //HttpServletRequest - 불변
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String msg = "Hello 한글";
