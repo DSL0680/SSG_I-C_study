@@ -33,7 +33,7 @@ public class TodoListController extends HttpServlet {
        int page = StringUtil.getInt(pageStr, 1);
 
        try {
-           List<TodoVO> todoList = TodoDAO.INSTANCE.list(page);
+
            int total = TodoDAO.INSTANCE.getTotal();
 
            PageInfo pageInfo = new PageInfo(page,10, total);
