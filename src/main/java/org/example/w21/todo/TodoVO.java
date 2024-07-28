@@ -16,7 +16,7 @@ public class TodoVO {
     private int tno;
     private String title;
     private String writer;
-    private Timestamp reqdate;
+    private Timestamp regdage;
     private Timestamp moddate;
     private boolean delflag;
 

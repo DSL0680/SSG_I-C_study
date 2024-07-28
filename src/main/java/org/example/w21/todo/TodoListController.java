@@ -6,6 +6,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
+import org.example.w21.common.PageInfo;
+import org.example.w21.common.StringUtil;
+import org.example.w21.todo.dao.TodoDAO;
 
 import java.io.IOException;
 
@@ -18,7 +21,29 @@ public class TodoListController extends HttpServlet {
 
         log.info("Todo List Page");
 
-        req.getRequestDispatcher("/WEB-INF/todo/list.jsp").forward(req, resp);
+        String pageStr = req.getParameter("page");
+
+        log.info("pageStr: " + pageStr);
+
+        int page = StringUtil.getInt(pageStr, 1);
+
+        try {
+            int total = TodoDAO.INSTANCE.getTotal();
+
+            PageInfo pageInfo = new PageInfo(page,10, total);
+
+            req.setAttribute("list", TodoDAO.INSTANCE.list(pageInfo.getPage()));
+
+            req.setAttribute("pageInfo", pageInfo);
+
+            req.getRequestDispatcher("/WEB-INF/todo/list.jsp").forward(req, resp);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }//end catch
+
+
+
 
 
 
