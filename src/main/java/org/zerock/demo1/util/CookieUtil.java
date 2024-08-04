@@ -9,15 +9,15 @@ import java.util.stream.Collectors;
 
 public class CookieUtil {
 
-    public static Map<String, String> parseStr(HttpServletRequest req) {
+    public static Map<Integer, String> parseStr(HttpServletRequest req) {
 
-        Map<String,String> answerMap = Arrays.stream(req.getCookies())
+        Map<Integer,String> answerMap = Arrays.stream(req.getCookies())
                 .filter(cookie -> cookie.getName().equals("answer"))
                 .findFirst()
                 .map(cookie -> cookie.getValue())
                 .map(value -> Arrays.stream(value.split("&"))
                         .map(str -> str.split(":"))
-                        .collect(java.util.stream.Collectors.toMap(str -> str[0], str -> str[1])))
+                        .collect(java.util.stream.Collectors.toMap(str -> Integer.parseInt(str[0]), str -> str[1])))
                 .orElse(null);
 
         return answerMap;

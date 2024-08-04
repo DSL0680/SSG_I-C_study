@@ -25,7 +25,7 @@ public class ExamViewController extends HttpServlet {
         int examNum = (int)session.getAttribute("examNum");
 
 
-        java.util.List<QuizVO> quizVOList = IntStream.rangeClosed(1, 10).mapToObj(i -> QuizVO.builder()
+        java.util.List<QuizVO> quizVOList = IntStream.rangeClosed(1, examNum).mapToObj(i -> QuizVO.builder()
                     .qno( i )
                     .question("문제" + i)
                     .op1("1번" + i)

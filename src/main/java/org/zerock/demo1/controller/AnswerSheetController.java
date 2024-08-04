@@ -19,7 +19,7 @@ public class AnswerSheetController extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        Map<String,String> answerMap = CookieUtil.parseStr(req);
+        Map<Integer,String> answerMap = CookieUtil.parseStr(req);
 
         req.setAttribute("answerMap", answerMap);
 

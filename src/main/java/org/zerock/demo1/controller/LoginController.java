@@ -21,6 +21,7 @@ public class LoginController extends HttpServlet {
         HttpSession session = req.getSession();
 
         session.setAttribute("uid","user00");
+
         session.setAttribute("examNum", 30);
 
         resp.sendRedirect("/exam/view");
