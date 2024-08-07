@@ -26,6 +26,7 @@ public class TeacherFilter implements Filter {
             resp.sendRedirect("/teacher/login");
             return;
         }
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }
