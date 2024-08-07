@@ -54,6 +54,10 @@
         .btn-custom:hover {
             background-color: #f6e5ae;
         }
+        h3 {
+            background-color: #f3e8c2;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>

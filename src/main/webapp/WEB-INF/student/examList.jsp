@@ -31,7 +31,7 @@
 
         .btn-register {
             background-color: #f3e8c2; /* Custom color for REGISTER button */
-            color: white;
+            color: black;
         }
         .btn-register:hover {
             background-color: #f6e5ae; /* Darker color on hover */
@@ -55,6 +55,10 @@
             justify-content: space-between;
             align-items: center;
         }
+        .logout-form {
+            text-align: right; /* Align logout button to the right */
+            margin-bottom: 20px; /* Add margin to the bottom of the form */
+        }
     </style>
 </head>
 <body>
@@ -67,13 +71,18 @@
             <strong>${message}</strong>
         </div>
     </c:if>
-    <form action="/slogout" method="post">
-        <button type="submit" class="btn btn-register">LOG OUT</button>
-    </form>
+
+    <!-- 로그아웃 버튼 오른쪽으로 정렬 -->
+    <div class="logout-form">
+        <form action="/slogout" method="post">
+            <button type="submit" class="btn btn-register">LOG OUT</button>
+        </form>
+    </div>
+
     <h2>Not Attended Exams</h2>
     <form action="/student/examList" method="post">
         <div class="form-group">
-            <label for="examId">Enter Exam ID to attend::</label>
+            <label for="examId">Enter Exam ID to attend:</label>
             <input type="text" id="examId" name="examId" class="form-control" required />
         </div>
         <input type="hidden" name="action" value="takeExam" />
