@@ -72,7 +72,7 @@
         </div>
     </c:if>
 
-    <!-- 로그아웃 버튼 오른쪽으로 정렬 -->
+
     <div class="logout-form">
         <form action="/slogout" method="post">
             <button type="submit" class="btn btn-register">LOG OUT</button>

@@ -94,7 +94,7 @@
         </tbody>
     </table>
 
-    <!-- 시험 목록으로 돌아가기-->
+    <!--시험 목록으로 돌아가기-->
     <a href="${pageContext.request.contextPath}/student/examList" class="btn-custom">Back to Exam List</a>
 </div>
 

@@ -87,7 +87,7 @@
         .btn-custom:hover {
             background-color: #b39e56; /* Darker shade for hover effect */
         }
-        /* Styling for the <h1> element */
+
         h1 {
             font-size: 2.5rem; /* Adjust font size */
             font-weight: bold; /* Make text bold */
