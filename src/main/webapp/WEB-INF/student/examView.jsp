@@ -74,7 +74,7 @@
             border: none;
         }
         .submit-button {
-            background-color: #b39e56; /* Button color */
+            background-color: #b39e56;
             margin-left: auto; /* Push button to the right */
             display: block; /* Ensure the button is on a new line */
         }

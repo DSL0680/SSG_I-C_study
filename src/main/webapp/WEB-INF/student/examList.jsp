@@ -56,8 +56,8 @@
             align-items: center;
         }
         .logout-form {
-            text-align: right; /* Align logout button to the right */
-            margin-bottom: 20px; /* Add margin to the bottom of the form */
+            text-align: right;
+            margin-bottom: 20px;
         }
     </style>
 </head>
