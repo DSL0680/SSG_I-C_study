@@ -14,6 +14,8 @@
 <script setup>
 import { computed, ref } from 'vue';
 
+const props = defineProps(["src"])
+console.log(props)
 
 const arr = ref( [
     { pno: 1, pname: 'P1', price: 3000, sale: true },
