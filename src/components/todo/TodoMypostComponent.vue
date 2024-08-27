@@ -1,19 +1,15 @@
 <template>
-    <div>
-        <div>
-            <h1>Todo MyPosts Component</h1>
-        </div>
+    <div class="container mt-4">
+        <h1 class="mb-4">Todo MyPosts Component</h1>
 
         <div v-if="myPosts.length === 0">
-            <p>작성한 내역이 없습니다.</p>
+            <p class="text-center">작성한 내역이 없습니다.</p>
         </div>
         <div v-else>
-            <ul>
-                <li v-for="post in myPosts" :key="post.mno">
-                    <RouterLink :to="`/todo/read/${post.mno}`">{{ post.title }}</RouterLink>
-                    <span>
-                        {{ post.dueDate }}
-                    </span>
+            <ul class="list-group">
+                <li v-for="post in myPosts" :key="post.mno" class="list-group-item d-flex justify-content-between align-items-center">
+                    <RouterLink :to="`/todo/read/${post.mno}`" class="text-decoration-none">{{ post.title }}</RouterLink>
+                    <span class="badge bg-secondary">{{ post.dueDate }}</span>
                 </li>
             </ul>
         </div>
@@ -36,13 +32,10 @@ const myPosts = computed(() => {
 onMounted(async () => {
     try {
         const res = await getList();
-
-        posts.value = res.content
-
+        posts.value = res.content;
     } catch (error) {
         console.error('Error fetching posts:', error);
     }
-
 });
 </script>
 
