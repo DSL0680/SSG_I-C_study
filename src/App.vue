@@ -13,7 +13,7 @@ console.log(computedMid);
 
     <div class="container-fluid">
 
-      <a class="navbar-brand" href="#">TodoApp</a>
+      <a class="navbar-brand" href="/">TodoApp</a>
 
       <div class="collapse navbar-collapse">
 
