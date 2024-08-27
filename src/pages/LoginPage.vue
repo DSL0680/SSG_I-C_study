@@ -14,14 +14,16 @@
 <script setup>
 import { ref } from 'vue';
 import useMember2 from '../stores/useMember2';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const midInput = ref('')
 const { signin } = useMember2()
 
 const handleClick = () => {
     const mid = midInput.value
     signin(mid)
-    
+    router.replace("/")
 }
 </script>
 
