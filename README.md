@@ -1,1 +1,1 @@
-# SSG_I-C_study
+# SSG_I&C_study
