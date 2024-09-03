@@ -3,35 +3,40 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
-
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <bean name="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-        <property name="driverClassName"
-                  value="org.mariadb.jdbc.Driver"/>
-        <property name="jdbcUrl"
-                  value="jdbc:mariadb://localhost:3306/bootdb2"/>
+        <property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mariadb://localhost:3306/bootdb2"/>
         <property name="username" value="bootdb2user"/>
         <property name="password" value="bootdb2user"/>
         <property name="connectionTimeout" value="30000"/>
         <property name="minimumIdle" value="2"/>
     </bean>
 
-    <bean name="dataSource" class="com.zaxxer.hikari.HikariDataSource"
-          destroy-method="close">
+    <bean name="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
         <constructor-arg ref="hikariConfig"/>
     </bean>
 
     <bean class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
-        <property name="mapperLocations" value="classpath:/mappers/*.xml"></property>
+        <property name="mapperLocations" value="classpath:/mappers/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
 
     <mybatis-spring:scan base-package="org.zerock.w2.mapper"></mybatis-spring:scan>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
 
     <context:component-scan base-package="org.zerock.w2.service"></context:component-scan>
     <context:component-scan base-package="org.zerock.w2.aop"></context:component-scan>
 
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+    <tx:annotation-driven></tx:annotation-driven>
+
 </beans>

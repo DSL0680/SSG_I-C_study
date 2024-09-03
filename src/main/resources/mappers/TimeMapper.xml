@@ -8,4 +8,12 @@
         select now()
     </select>
 
+    <insert id="insert1">
+        insert into tbl_a (col1) values (#{str})
+    </insert>
+
+    <insert id="insert2">
+        insert into tbl_b (col2) values (#{str})
+    </insert>
+
 </mapper>

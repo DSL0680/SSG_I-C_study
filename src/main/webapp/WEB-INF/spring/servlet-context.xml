@@ -11,7 +11,8 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
-    <mvc:resources mapping="/resources/**" location="classpath:/static/"></mvc:resources>
+
+    <!--    <mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>-->
 
     <context:component-scan base-package="org.zerock.w2.controller">
     </context:component-scan>

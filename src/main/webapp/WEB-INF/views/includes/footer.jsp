@@ -46,17 +46,17 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="http://localhost:8081/vendor/jquery/jquery.min.js"></script>
+<script src="http://localhost:8081/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="http://localhost:8081/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="/resources/js/sb-admin-2.min.js"></script>
+<script src="http://localhost:8081/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="http://localhost:8081/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 
 
