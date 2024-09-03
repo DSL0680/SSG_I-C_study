@@ -57,6 +57,7 @@ dependencies {
 
     implementation 'org.aspectj:aspectjrt:1.9.22'
 
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
 }
 
 test {
