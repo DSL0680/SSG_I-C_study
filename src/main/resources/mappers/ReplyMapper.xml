@@ -9,4 +9,13 @@
         values (#{bno}, #{reply}, #{replyer})
     </insert>
 
+    <select id="list" resultType="ReplyVO">
+        select * from tbl_reply where bno = 23 and rno > 0
+        limit #{pr.skip}, #{pr.size}
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from tbl_reply where bno = #{bno} and rno > 0
+    </select>
+
 </mapper>

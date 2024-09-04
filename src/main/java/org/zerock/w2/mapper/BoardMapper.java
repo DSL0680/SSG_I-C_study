@@ -15,6 +15,10 @@ public interface BoardMapper {
 
     Long insert(BoardVO vo);
 
+    void insertAttach(@Param("bno") Long bno,
+                      @Param("fileName") String fileName,
+                      @Param("ord") int ord);
+
     int delete(Long bno);
 
     int update(BoardVO vo);

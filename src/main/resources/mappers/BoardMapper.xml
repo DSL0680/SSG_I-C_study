@@ -32,6 +32,11 @@
 		#{content}, #{writer})
 	</insert>
 
+	<insert id="insertAttach">
+		insert into tbl_board_attach (bno, fileName, ord)
+		values(#{bno},#{fileName},#{ord})
+	</insert>
+
 	<delete id="delete">
 		delete from tbl_board where bno = #{bno}
 	</delete>

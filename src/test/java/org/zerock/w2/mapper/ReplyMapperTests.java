@@ -8,7 +8,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.zerock.w2.vo.PageRequest;
 import org.zerock.w2.vo.ReplyVO;
+import sun.jvm.hotspot.debugger.Page;
+
+import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -19,6 +23,16 @@ public class ReplyMapperTests {
     private BoardMapper boardMapper;
     @Autowired(required = false)
     private ReplyMapper replyMapper;
+
+    @Test
+    public void testList() {
+        Long bno = 23L;
+        PageRequest pageRequest = new PageRequest();
+
+        List<ReplyVO> list = replyMapper.list(bno, pageRequest);
+
+        list.forEach(replyVO -> log.info(replyVO));
+    }
 
     @Test
     public void testInsert() {
