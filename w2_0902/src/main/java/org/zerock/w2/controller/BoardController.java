@@ -5,10 +5,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.w2.dto.BoardRegisterDTO;
 import org.zerock.w2.service.BoardService;
 import org.zerock.w2.vo.PageRequest;
 
@@ -19,6 +18,20 @@ import org.zerock.w2.vo.PageRequest;
 public class BoardController {
 
     private final BoardService boardService;
+
+    @GetMapping("register")
+    public void register() {
+
+    }
+
+    @PostMapping("register")
+    public String register(BoardRegisterDTO dto, RedirectAttributes rttr) {
+        log.info(dto);
+
+        boardService.register(dto);
+
+        return "redirect:/board/list";
+    }
 
     @GetMapping("list")
     public void list(PageRequest pageRequest, Model model) {
