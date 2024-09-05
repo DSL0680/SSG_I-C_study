@@ -63,6 +63,13 @@ dependencies {
 
     implementation 'net.coobird:thumbnailator:0.4.20'
 
+    implementation 'org.springframework.security:spring-security-core:5.7.8'
+    implementation 'org.springframework.security:spring-security-config:5.7.8'
+    implementation 'org.springframework.security:spring-security-taglibs:5.7.8'
+    implementation 'org.springframework.security:spring-security-web:5.7.8'
+
+
+
 }
 
 test {
