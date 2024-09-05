@@ -13,7 +13,25 @@
 <body>
 
 <form action="/board/register" method="post" enctype="multipart/form-data">
+    <div>
+        title: <input type="text" name="title">
+    </div>
 
+    <div>
+        content: <input type="text" name="content">
+    </div>
+
+    <div>
+        writer: <input type="text" name="writer">
+    </div>
+
+    <div>
+       file: <input type="file" name="files" multiple>
+    </div>
+
+    <div>
+        <button>SUBMIT</button>
+    </div>
 </form>
 
 </body>
