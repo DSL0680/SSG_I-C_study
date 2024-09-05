@@ -28,7 +28,12 @@ ${result}
                 <c:forEach items="${result.list}" var="board">
                 <tr>
                     <th><c:out value="${board.bno}"/></th>
-                    <th><c:out value="${board.title}"/></th>
+                    <th>
+                        <c:if test="${board.fileName != null}">
+                        <img src="http://localhost:8081/attach/s_${board.fileName}">
+                        </c:if>
+                        <c:out value="${board.title}"/>
+                    </th>
                     <th><c:out value="${board.writer}"/></th>
                     <th>REGDATE</th>
                     <th>MODDATE</th>

@@ -11,6 +11,28 @@ public class PageRequest {
 	
 	private int size = 10;
 
+	private String type;
+	private String keyword;
+
+	public void setType(final String type) {
+		this.type = type;
+
+	}
+
+	public void setKeyword(final String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String[] getArr() {
+
+		if(type == null || keyword == null || keyword.trim().length() == 0){
+			return new String[0];
+		}
+
+		return type.split("");
+
+	}
+
 	public void setPage(int page) {
 		this.page = page <= 0 ? 1 : page;
 	}
