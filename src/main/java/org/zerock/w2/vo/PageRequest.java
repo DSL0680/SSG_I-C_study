@@ -16,6 +16,7 @@ public class PageRequest {
 
 	public void setType(final String type) {
 		this.type = type;
+
 	}
 
 	public void setKeyword(final String keyword) {
