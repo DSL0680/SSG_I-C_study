@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basicLayout.html}">
+
+<div layout:fragment="content">
+
+  <div class="card">
+    <div class="card-header">
+      <form id="actionForm" action="/board/list" method="get" >
+        <select name="type">
+          <option value="">---</option>
+          <option value="T" th:selected="${pageRequest.type == 'T'}" >제목</option>
+          <option value="C" th:selected="${pageRequest.type == 'C'}">내용</option>
+          <option value="W" th:selected="${pageRequest.type == 'W'}">작성자</option>
+          <option value="TC" th:selected="${pageRequest.type == 'TC'}">제목혹은내용</option>
+          <option value="TW" th:selected="${pageRequest.type == 'TW'}">제목혹은작성자</option>
+          <option value="TCW" th:selected="${pageRequest.type == 'TCW'}">제목혹은내용혹은작성자</option>
+        </select>
+
+        <input type="text" name="keyword" th:value="${pageRequest.keyword}">
+        <input type="hidden" name="page" value="1">
+
+        <button class="btn btn-secondary searchBtn">Search</button>
+        <button class="btn btn-primary clearBtn">Clear</button>
+
+      </form>
+    </div>
+
+    <div class="card-body">
+      <table class="table">
+        <thead>
+        <tr>
+          <td>BNO</td>
+          <td>TITLE</td>
+          <td>WRITER</td>
+          <td>REGDATE</td>
+          <td>VIEW</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dto: ${result.list}">
+          <td>[[${dto.bno}]]</td>
+          <td>[[${dto.title}]]</td>
+          <td>[[${dto.writer}]]</td>
+          <td>[[${#temporals.format(dto.regDate, 'yyyy-MM-dd') }]]</td>
+          <td>[[${dto.viewCnt}]]</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <div class="float-end">
+        <ul class="pagination flex-wrap">
+
+          <li class="page-item" th:if="${result.prev}" ><a class="page-link" th:href="${result.startPage -1}">PREV</a></li>
+
+          <th:block th:each="i :${#numbers.sequence(result.startPage,result.endPage)} ">
+            <li class="page-item" th:if="${i > 0}"><a class="page-link" th:href="${i}">[[${i}]]</a></li>
+          </th:block>
+
+          <li class="page-item" th:if="${result.next}"><a class="page-link" th:href="${result.endPage +1}">NEXT</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<script th:inline="javascript" layout:fragment="script">
+
+  const bno = [[${bno}]]
+
+  const result = [[${result}]]
+
+  console.log(result)
+
+  const myModal = new bootstrap.Modal(
+          document.querySelector('#exampleModal'), null)
+
+  if(bno){
+    myModal.show()
+  }
+
+  const actionForm = document.querySelector("#actionForm")
+
+  document.querySelector(".pagination").addEventListener("click", e => {
+
+    e.preventDefault()
+    e.stopPropagation()
+    const target = e.target
+    const pageNum = target.getAttribute("href")
+
+    if(!pageNum){
+      return
+    }
+    actionForm.querySelector('input[name="page"]').value = pageNum
+    actionForm.submit()
+  },false)
+
+  document.querySelector(".searchBtn").addEventListener("click", e=> {
+    e.preventDefault()
+    actionForm.submit()
+  })
+  document.querySelector(".clearBtn").addEventListener("click", e=> {
+    e.preventDefault();
+    self.location="/board/list"
+  })
+
+
+</script>
