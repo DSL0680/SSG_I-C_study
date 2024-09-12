@@ -1,22 +1,21 @@
 package org.zerock.b2.board.controller;
 
-
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.b2.board.dto.BoardReadDTO;
 import org.zerock.b2.board.dto.BoardRegisterDTO;
 import org.zerock.b2.board.dto.PageRequest;
 import org.zerock.b2.board.dto.SampleDTO;
 import org.zerock.b2.board.service.BoardService;
 import org.zerock.b2.board.util.UploadUtil;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/board")
@@ -45,11 +44,10 @@ public class BoardController {
         rttr.addFlashAttribute("bno", boardRegisterDTO.getBno());
 
         return "redirect:/board/list";
-
     }
 
     @GetMapping("register")
-    public void register() {
+    public void register(){
 
     }
 
@@ -60,12 +58,39 @@ public class BoardController {
 
     }
 
+    @GetMapping("read/{bno}")
+    public String read (@CookieValue("view")String viewValue, @PathVariable("bno") Long bno, Model model) {
+
+        log.info("Reading board: " + bno);
+        log.info("viewValue: " + viewValue);
+
+        boolean existed = false;
+
+        if(viewValue != null) {
+            existed = Arrays.stream(viewValue.split("%")).anyMatch(str -> str.equals(bno+""));
+        }
+
+        if(!existed) {
+
+            log.info("View Count... update........................");
+
+        }
+
+        Optional<BoardReadDTO> result = boardService.get(bno);
+
+        BoardReadDTO boardReadDTO = result.orElseThrow();
+
+        model.addAttribute("board", boardReadDTO);
+
+        return "/board/read";
+    }
+
+
     @GetMapping("ex1")
     public void ex1(Model model) {
         log.info("ex1");
         model.addAttribute("msg", "ex1 Msg");
-
-        model.addAttribute("list", List.of("A1111","B2222","C3333","D4444"));
+        model.addAttribute("list", List.of("A1111","B2222","C3333","D44444") );
     }
 
     @GetMapping("ex2")
@@ -81,6 +106,9 @@ public class BoardController {
         );
 
         model.addAttribute("list", list);
+
+
     }
+
 
 }

@@ -1,3 +1,4 @@
+drop table if exists tbl_reply_favorite;
 
 drop table if exists tbl_reply;
 
@@ -48,5 +49,25 @@ create table tbl_reply
 create index idx_board
     on tbl_reply (bno desc, rno asc);
 
+create table tbl_reply_favorite
+(
+    rno     int         not null,
+    mid     varchar(50) not null,
+    regDate TIMESTAMP default now()
+);
 
+alter table tbl_reply_favorite
+    add constraint pk_reply_favorite
+        primary key (rno, mid)
+;
+
+select rno, min(reply), min(replyer), count(fno), sum(choice)
+from (
+         select rep.rno rno, reply, replyer, fa.rno fno, if(fa.mid = 'r1',1,0) choice
+         from
+             tbl_reply rep left join tbl_reply_favorite fa on rep.rno = fa.rno
+         where
+             rep.bno = 100
+     ) r1
+group by rno;
 
