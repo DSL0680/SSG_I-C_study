@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: b1
+  banner:
+    location: classpath:banner.txt
+
+  profiles:
+    include:
+      - board
+
+server:
+  port: 8081
+
+sample:
+  msg: Hello YML
