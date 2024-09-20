@@ -17,9 +17,9 @@ function KioskMain() {
 
     const filteredList: IProduct[] = products.filter(p => {
         if (type === 'ALL') {
-            return true;
+            return true
         }
-        return p.kind === type;
+        return p.kind === type
     });
 
     const { cartItems, addToCart, changeQty }: IUseKiosk = useKiosk();
