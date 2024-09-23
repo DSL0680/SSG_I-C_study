@@ -1,4 +1,4 @@
-import KioskMain from "./components/kiosk/KioskMain.tsx";
+import TodoIndex from "./components/todo/TodoIndex.tsx";
 
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
               Hello world!
           </h1>
 
-          <KioskMain></KioskMain>
+          <TodoIndex></TodoIndex>
 
       </>
   )
